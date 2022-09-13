@@ -1,0 +1,24 @@
+{
+  "name": "mini-blogging-site-project-1",
+  "version": "1.0.0",
+  "description": "mini-blogging-site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Tanmay Hedau",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.3",
+    "nodemon": "^2.0.19"
+  }
+}
