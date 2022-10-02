@@ -54,7 +54,7 @@ const createAuthor = async function (req, res) {
         if (!isValid(fname) || !regixValidator(fname)) {
             return res
                 .status(400)
-                .send({ status: false, message: "first name is required or its should contain character" })
+                .send({ status: false, message: "first name is required or its should contain alphabets or you have given some blank spaces at start and end" })
         }
 
         if (!isValid(lname) || !regixValidator(lname)) {

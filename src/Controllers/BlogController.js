@@ -11,7 +11,7 @@ const createBlog = async (req, res)=> {
         let { title, body, authorId, category, isPublished } = req.body
 
         if (!title) {
-            return res.status(400).send({ status: false, message: "title is not present" })
+            return res.status(400).send({ status: false, message: "title is not present" }) 
         }
         if (typeof (title) != "string") {
             return res.status(400).send({ status: false, message: "title should be in String" })
@@ -36,7 +36,6 @@ const createBlog = async (req, res)=> {
         }
 
         let validId = await authorModel.findOne({ _id: authorId })
-        console.log(validId)
         if (!validId) {
             return res.status(404).send({ status: false, message: " AuthorId not found" })
         }
