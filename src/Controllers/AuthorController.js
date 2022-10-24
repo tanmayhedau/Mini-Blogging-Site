@@ -1,35 +1,10 @@
 const authorModel = require("../Models/AuthorModel")
 const jwt = require('jsonwebtoken')
+const {isValid, isValidEmail, isValidPassword, isValidRequest, regixValidator} = require("../validations/validators")
 
 
 //==============================================================createAuthor=======================================================================
 
-const isValid = function (value) {
-    if (typeof value === "undefined" || value === null) return false;
-    if (typeof value === "string" && value.trim().length > 0) return true;
-    return false;
-};
-
-const isValidRequest = function (object) {
-    return Object.keys(object).length > 0
-}
-
-const isValidEmail = function (value) {
-    const regexForEmail = /^[a-z0-9_]{3,}@[a-z]{3,}.[a-z]{3,6}$/
-    return regexForEmail.test(value)
-}
-
-const isValidPassword = function (value) {
-    const regexForPassword = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&])[a-zA-Z0-9@#$%&]{6,20}$/
-    return regexForPassword.test(value)
-}
-const regixValidator = function (value) {
-    const regex = /^[a-zA-Z]+([\s][a-zA-Z]+)*$/
-    return regex.test(value)
-}
-
-
-//*****[REGISTER NEW AUTHOR]********* */
 
 const createAuthor = async function (req, res) {
 
@@ -91,7 +66,7 @@ const createAuthor = async function (req, res) {
 
         if (isEmailUnique) {
             return res
-                .status(400)
+                .status(409)
                 .send({ status: false, message: "Email already exits" });
         }
 
@@ -135,10 +110,10 @@ const loginAuthor = async function (req, res) {
             return res.status(400).send({ status: false, message: "Password is mandatory" })
         }
 
-        if (!(/^[a-z0-9_]{3,}@[a-z]{3,}.[a-z]{3,6}$/).test(Email)) {
+        if (!isValidEmail(Email)) {
             return res.status(400).send({ status: false, message: "Email format or pattern is invalid" })
         }
-        if (!/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&])[a-zA-Z0-9@#$%&]{6,20}$/.test(Password)) {
+        if (!isValidPassword(Password)) {
             return res.status(400).send({status:false, message: "Password should be min 6 and max 20 character.It contains atleast--> 1 Uppercase letter, 1 Lowercase letter, 1 Number, 1 Special character" })
         }
 
