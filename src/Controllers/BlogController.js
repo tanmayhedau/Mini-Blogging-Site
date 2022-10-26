@@ -178,7 +178,7 @@ const updatedBlog = async function (req, res) {
       res.status(403).send({ status: false, message: "unauthorised author" });
     }
 
-    if (!savedData.isDeleted) {
+    if (savedData.isDeleted == false) {
       if (savedData.isPublished == false || savedData.isPublished == true) {
         if (data["title"]) {
           if (typeof data["title"] === "string") {

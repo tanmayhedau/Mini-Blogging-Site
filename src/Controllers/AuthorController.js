@@ -47,7 +47,7 @@ const createAuthor = async function (req, res) {
         if (!["Mr", "Mrs", "Miss"].includes(title)) {
             return res
                 .status(400)
-                .send({ status: false, message: "Title should contain Mr.,Mrs.,Miss" })
+                .send({ status: false, message: "Title should contain Mr, Mrs, Miss" })
         }
 
         if (!isValid(email)) {
